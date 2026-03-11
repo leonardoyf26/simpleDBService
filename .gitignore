@@ -1,0 +1,15 @@
+# executáveis
+a.out
+a.exe
+a
+
+# objetos de compilação
+*.o
+*.obj
+
+# diretórios de build
+build/
+
+# arquivos temporários de teste
+main.cpp
+main.c++
