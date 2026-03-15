@@ -6,6 +6,9 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
+namespace simpledb
+{
+
 class Database
 {
 private:
@@ -17,5 +20,6 @@ public:
     bool del(const std::string& key);
     bool exists(const std::string& key) const;
 };
+}
 
 #endif
