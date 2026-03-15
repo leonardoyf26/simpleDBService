@@ -16,7 +16,7 @@ public:
 private:
     std::vector<std::string> tokenize(const std::string& input) const;
     CommandType getCommandType(const std::string& token) const;
-    Command buildCommand(const std::vector<std::string>& tokens, CommandType type);
+    Command buildCommand(const std::vector<std::string>& tokens, CommandType type) const;
 };
 
 } // namespace simpledb

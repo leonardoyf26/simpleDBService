@@ -1,5 +1,8 @@
 #include "Database.h"
 
+namespace simpledb
+{
+
 void Database::set(const std::string& key, const std::string& value)
 {
     data[key] = value;
@@ -23,4 +26,6 @@ bool Database::del(const std::string& key)
 bool Database::exists(const std::string& key) const
 {
     return data.find(key) != data.end();
+}
+
 }
