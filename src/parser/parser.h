@@ -1,6 +1,6 @@
 #include <string>
 #include <vector>
-#include "command.h"
+#include "Command.h"
 
 #ifndef PARSER_H
 #define PARSER_H
