@@ -3,12 +3,20 @@
 namespace simpledb
 {
 
+Engine::Engine()
+    : storage("data/db.txt")
+{
+    auto data = storage.load();
+    db.loadData(data);
+}
+
 std::string Engine::execute(const Command& cmd)
 {
     switch (cmd.type)
     {
     case CommandType::SET:
         db.set( cmd.key, cmd.value);
+        storage.save(db.getAll());
         return "OK";
     case CommandType::GET:
         {
@@ -20,7 +28,12 @@ std::string Engine::execute(const Command& cmd)
             return "(nil)";
         }
     case CommandType::DEL:
-        return db.del( cmd.key )? "OK" : "(nil)";
+        if (db.del(cmd.key))
+        {
+            storage.save(db.getAll());
+            return "OK";
+        }
+        return "(nil)";
     case CommandType::EXISTS:
         return db.exists( cmd.key )? "true" : "false";
     case CommandType::EXIT:

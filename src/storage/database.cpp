@@ -28,4 +28,14 @@ bool Database::exists(const std::string& key) const
     return data.find(key) != data.end();
 }
 
+const std::unordered_map<std::string, std::string>& Database::getAll() const
+{
+    return data;
+}
+
+void Database::loadData(const std::unordered_map<std::string, std::string>& newData)
+{
+    data = newData;
+}
+
 }

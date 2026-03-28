@@ -5,6 +5,7 @@
 
 #include "../storage/database.h"
 #include "../parser/command.h"
+#include "../persistence/Storage.h"
 
 namespace simpledb
 {
@@ -12,7 +13,7 @@ namespace simpledb
 class Engine
 {
 public:
-    Engine() = default;
+    Engine();
     ~Engine() = default;
 
     // Executa um comando e retorna a resposta
@@ -20,6 +21,7 @@ public:
 
 private:
     Database db;
+    Storage storage;
 };
 
 } // namespace simpledb

@@ -15,6 +15,8 @@ private:
     std::unordered_map<std::string, std::string> data;
 
 public:
+    const std::unordered_map<std::string, std::string>& getAll() const;
+    void loadData(const std::unordered_map<std::string, std::string>& newData);
     void set(const std::string& key, const std::string& value);
     std::optional<std::string> get(const std::string& key);
     bool del(const std::string& key);
