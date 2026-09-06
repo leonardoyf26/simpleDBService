@@ -11,20 +11,28 @@ include_directories(
     src/storage
     src/engine
     src/persistence
+    src/app
+    src/server
 )
 
 # Lista de arquivos fonte
 set(SOURCES
+    src/main.cpp
     src/app/console_app.cpp
 
     src/parser/parser.cpp
 
     src/storage/database.cpp
 
-    src/engine/engine.cpp
+    src/engine/Engine.cpp
 
-    src/persistence/storage.cpp
+    src/persistence/Storage.cpp
+    
+    src/server/Server.cpp
 )
 
 # Executável
 add_executable(simpledb ${SOURCES})
+
+# Linkar com pthread para suporte a mutex e signals
+target_link_libraries(simpledb pthread)

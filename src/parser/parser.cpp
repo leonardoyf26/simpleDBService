@@ -1,4 +1,4 @@
-#include "Parser.h"
+#include "parser.h"
 #include <cctype>
 #include <algorithm>
 #include <unordered_map>
@@ -12,12 +12,19 @@ static const std::unordered_map<std::string, CommandType> commandMap =
     {"GET", CommandType::GET},
     {"DEL", CommandType::DEL},
     {"EXISTS", CommandType::EXISTS},
-    {"EXIT", CommandType::EXIT}
+    {"EXIT", CommandType::EXIT},
+    {"DISCONNECT", CommandType::DISCONNECT}
 };
 
 Command Parser::parse(const std::string& input)
 {
-    auto tokens = tokenize(input);
+    // Trim a entrada para remover espaços/caracteres especiais
+    std::string trimmed = trim(input);
+    
+    if (trimmed.empty())
+        return Command{};
+    
+    auto tokens = tokenize(trimmed);
 
     if (tokens.empty())
         return Command{};
@@ -99,6 +106,7 @@ Command Parser::buildCommand(const std::vector<std::string>& tokens, CommandType
             break;
 
         case CommandType::EXIT:
+        case CommandType::DISCONNECT:
             if (tokens.size() != 1)
                 cmd.type = CommandType::UNKNOWN;
             break;
@@ -108,6 +116,17 @@ Command Parser::buildCommand(const std::vector<std::string>& tokens, CommandType
     }
 
     return cmd;
+}
+
+std::string Parser::trim(const std::string& str) const
+{
+    size_t first = str.find_first_not_of(" \t\r\n\v\f");
+    if (std::string::npos == first)
+    {
+        return str;
+    }
+    size_t last = str.find_last_not_of(" \t\r\n\v\f");
+    return str.substr(first, (last - first + 1));
 }
 
 }

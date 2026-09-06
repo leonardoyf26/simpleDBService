@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "../parser/Parser.h"
+#include "../parser/parser.h"
 #include "../engine/Engine.h"
 
 namespace simpledb
@@ -41,11 +41,3 @@ void runConsoleApp()
 }
 
 } // namespace simpledb
-
-
-// Ponto de entrada obrigatório do C++
-int main()
-{
-    simpledb::runConsoleApp();
-    return 0;
-}
