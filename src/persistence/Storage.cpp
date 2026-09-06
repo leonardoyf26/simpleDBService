@@ -1,5 +1,6 @@
 #include "Storage.h"
 
+#include <iostream>
 #include <fstream>
 #include <sstream>
 
@@ -15,11 +16,19 @@ void Storage::save(const std::unordered_map<std::string, std::string>& data)
     std::ofstream file(filename, std::ios::trunc);
 
     if (!file.is_open())
+    {
+        std::cerr << "Aviso: Não foi possível abrir arquivo de persistência: " << filename << "\n";
         return;
+    }
 
     for (const auto& [key, value] : data)
     {
         file << key << "=" << value << "\n";
+    }
+    
+    if (!file.good())
+    {
+        std::cerr << "Aviso: Erro ao escrever em arquivo de persistência.\n";
     }
 }
 

@@ -12,6 +12,7 @@ enum class CommandType
     DEL,
     EXISTS,
     EXIT,
+    DISCONNECT,
     UNKNOWN
 };
 
